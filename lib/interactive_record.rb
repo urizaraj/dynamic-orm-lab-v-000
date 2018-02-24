@@ -52,6 +52,12 @@ class InteractiveRecord
     DB[:conn].execute(sql)
   end
 
-  def self.find_by
+  def self.find_by(hash)
+    condition = []
+    hash.each do |property, value|
+      condition << "#{property} = '#{value}'"
+    end
+    condition_string = condition.join(', ')
+    sql = "SELECT * FROM #{self.table_name} WHERE #{condition_string}"
   end
 end
