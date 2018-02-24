@@ -59,5 +59,6 @@ class InteractiveRecord
     end
     condition_string = condition.join(', ')
     sql = "SELECT * FROM #{self.table_name} WHERE #{condition_string}"
+    DB[:conn].execute(sql)
   end
 end
